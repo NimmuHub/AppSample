@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - AppSample  # Replace with your branch name
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Restore NuGet packages
+      run: nuget restore sampleapp1.sln  # Replace with your solution file name
+
+    - name: Build solution
+      run: msbuild /p:Configuration=Release sampleapp1.sln  # Replace with your solution file name
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: built-files
+        path: path/to/your/built/files  # Replace with the path where your built files are located
