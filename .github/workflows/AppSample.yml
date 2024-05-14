@@ -3,7 +3,7 @@ name: Build
 on:
   push:
     branches:
-      - AppSample  # Replace with your branch name
+      - sample_branch  # Replace with your branch name
 
 jobs:
   build:
